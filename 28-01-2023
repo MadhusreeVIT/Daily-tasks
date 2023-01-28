@@ -1,0 +1,66 @@
+1)class Solution:
+    def maxArea(self, H: List[int]) -> int:
+        ans, i, j = 0, 0, len(H)-1
+        while (i < j):
+            if H[i] <= H[j]:
+                res = H[i] * (j - i)
+                i += 1
+            else:
+                res = H[j] * (j - i)
+                j -= 1
+            if res > ans: ans = res
+        return ans
+        
+  2)value = [1000,900,500,400,100,90,50,40,10,9,5,4,1]
+roman = ["M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"]
+
+class Solution:
+    def intToRoman(self, N: int) -> str:
+        answer = ""
+        for i in range(13):
+            while N >= value[i]:
+                answer += roman[i]
+                N -= value[i]
+        return answer
+        
+   3)class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        if(strs==null || strs.length==0) return "";
+        String ans="";
+        int minLen = 200;
+        for(String s : strs)
+            minLen = Math.min(minLen, s.length());
+        for(int i=0; i<minLen; i++)
+        {
+            char ch = strs[0].charAt(i);
+            for(int j=0; j<strs.length; j++)
+            {
+                if(strs[j].charAt(i) != ch)
+                {
+                    return ans;
+                }
+            }
+            ans += ch;
+        }
+        
+        return ans;
+    }
+}
+
+
+4)class Solution {
+    public int threeSumClosest(int[] nums, int target) {
+        int result=nums[0]+nums[1]+nums[nums.length-1];
+        Arrays.sort(nums);
+        for (int i=0;i<nums.length-2;i++) {
+            int start=i+1,end=nums.length-1;
+            while(start<end) {
+                int sum=nums[i]+nums[start]+nums[end];
+                if(sum>target) end--;
+                else start++;
+                if (Math.abs(sum-target)<Math.abs(result-target)) result=sum;
+            }
+        }
+        return result;
+    }
+}
